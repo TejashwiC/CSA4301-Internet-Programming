@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shadows in webpage</title>
+        <style>
+            body{
+                font-family:Arial,sans-serif;
+                background-color: #f0f8ff;
+                text-align: center;
+                padding: 40px;
+            }
+            h1{
+                color:darkblue;
+                text-shadow: 3px 3px 5px gray;
+            }
+            .box{
+                width: 300px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 5px 5px 15px gray;
+            }
+            button{
+                background-color: blue;
+                color: white;
+                border: none;
+                padding: 12px 25px;
+                font-size: 16px;
+                border-radius: 5px;
+                box-shadow: 3px 3px 8px gray;
+                cursor: pointer;
+            }
+            button:hover{
+                box-shadow: 6px 6px 12px black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Shadow effects in CSS</h1>
+        <div class="box">
+            <p>This box uses the <b> box-shadow </b>property.</p>
+        </div>
+        <button>Click Me></button>
+    </body>
+</html>
