@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Cart</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background:#ff4081;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:30px auto;
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:25px;
+}
+
+.box{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+h2{
+margin-bottom:20px;
+color:#ff4081;
+}
+
+.cart-item{
+display:flex;
+align-items:center;
+margin-bottom:20px;
+border-bottom:1px solid #ddd;
+padding-bottom:15px;
+}
+
+.cart-item img{
+width:120px;
+height:100px;
+object-fit:cover;
+border-radius:10px;
+margin-right:20px;
+}
+
+.details{
+flex:1;
+}
+
+.details h3{
+margin-bottom:8px;
+}
+
+.price{
+font-size:20px;
+font-weight:bold;
+color:green;
+}
+
+.qty{
+width:60px;
+padding:5px;
+margin-top:10px;
+}
+
+.remove{
+background:red;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:5px;
+cursor:pointer;
+margin-top:10px;
+}
+
+input,textarea,select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:5px;
+font-size:16px;
+}
+
+.summary{
+font-size:18px;
+line-height:35px;
+}
+
+.place-btn{
+width:100%;
+padding:15px;
+background:#ff4081;
+color:white;
+border:none;
+font-size:18px;
+cursor:pointer;
+border-radius:5px;
+margin-top:20px;
+}
+
+.place-btn:hover{
+background:#e91e63;
+}
+
+@media(max-width:768px){
+
+.container{
+grid-template-columns:1fr;
+}
+
+.cart-item{
+flex-direction:column;
+text-align:center;
+}
+
+.cart-item img{
+margin-bottom:15px;
+margin-right:0;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🛒 Shopping Cart</h1>
+
+</header>
+
+<div class="container">
+
+<div class="box">
+
+<h2>Your Cart</h2>
+
+<div class="cart-item">
+
+<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600">
+
+<div class="details">
+
+<h3>Chocolate Cake</h3>
+
+<p class="price">₹499</p>
+
+<label>Quantity</label>
+
+<input
+class="qty"
+type="number"
+value="1"
+min="1"
+onchange="updateTotal()">
+
+<button class="remove">Remove</button>
+
+</div>
+
+</div>
+
+<div class="cart-item">
+
+<img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600">
+
+<div class="details">
+
+<h3>Strawberry Cake</h3>
+
+<p class="price">₹599</p>
+
+<label>Quantity</label>
+
+<input
+class="qty"
+type="number"
+value="1"
+min="1"
+onchange="updateTotal()">
+
+<button class="remove">Remove</button>
+
+</div>
+
+</div>
+
+<h2>Delivery Address</h2>
+
+<input type="text" placeholder="Full Name">
+
+<input type="text" placeholder="Mobile Number">
+
+<input type="email" placeholder="Email">
+
+<textarea rows="4" placeholder="Enter Delivery Address"></textarea>
+
+<input type="text" placeholder="City">
+
+<input type="text" placeholder="Pincode">
+
+</div>
+
+<div class="box">
+
+<h2>Order Summary</h2>
+
+<div class="summary">
+
+<p>Chocolate Cake : ₹499</p>
+
+<p>Strawberry Cake : ₹599</p>
+
+<hr><br>
+
+<p><b>Subtotal :</b> ₹1098</p>
+
+<p><b>Delivery :</b> ₹50</p>
+
+<p><b>GST :</b> ₹55</p>
+
+<p style="font-size:22px;color:green;">
+
+<b>Total :</b>
+
+<span id="total">₹1203</span>
+
+</p>
+
+<h2 style="margin-top:25px;">Payment Method</h2>
+
+<select id="payment">
+
+<option>Cash on Delivery</option>
+
+<option>UPI</option>
+
+<option>Credit Card</option>
+
+<option>Debit Card</option>
+
+<option>Net Banking</option>
+
+</select>
+<button class="place-btn" onclick="placeOrder()">
+Place Order
+</button>
+
+<br><br>
+
+<button class="place-btn"
+style="background:#4CAF50;"
+onclick="window.location.href='student.dashboard.html'">
+Continue Shopping
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function updateTotal(){
+
+let qty=document.querySelectorAll(".qty");
+
+let prices=[499,599];
+
+let subtotal=0;
+
+for(let i=0;i<qty.length;i++){
+
+subtotal+=prices[i]*parseInt(qty[i].value);
+
+}
+
+let delivery=50;
+let gst=Math.round(subtotal*0.05);
+
+let total=subtotal+delivery+gst;
+
+document.querySelector(".summary").innerHTML=`
+
+<p>Chocolate Cake : ₹${prices[0]*qty[0].value}</p>
+
+<p>Strawberry Cake : ₹${prices[1]*qty[1].value}</p>
+
+<hr><br>
+
+<p><b>Subtotal :</b> ₹${subtotal}</p>
+
+<p><b>Delivery :</b> ₹${delivery}</p>
+
+<p><b>GST :</b> ₹${gst}</p>
+
+<p style="font-size:22px;color:green;">
+<b>Total :</b>
+₹${total}
+</p>
+
+<h2 style="margin-top:25px;">Payment Method</h2>
+
+<select id="payment">
+
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Credit Card</option>
+<option>Debit Card</option>
+<option>Net Banking</option>
+
+</select>
+
+<button class="place-btn" onclick="placeOrder()">
+Place Order
+</button>
+
+<br><br>
+
+<button class="place-btn"
+style="background:#4CAF50;"
+onclick="window.location.href='student.dashboard.html'">
+Continue Shopping
+</button>
+
+`;
+
+}
+
+document.querySelectorAll(".remove").forEach(function(btn){
+
+btn.onclick=function(){
+
+this.parentElement.parentElement.remove();
+
+updateTotal();
+
+}
+
+});
+
+function placeOrder(){
+
+let payment=document.getElementById("payment").value;
+
+alert("🎉 Order Placed Successfully!\n\nThank You For Shopping.");
+window.location.href="student.dashboard.html";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard - Sweet Cake Shop</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#fff8f8;
+}
+
+nav{
+background:#ff4081;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+color:white;
+position:sticky;
+top:0;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:25px;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+nav ul li a:hover{
+color:#ffe082;
+}
+
+.container{
+width:90%;
+margin:auto;
+padding:30px 0;
+}
+
+h1{
+color:#d81b60;
+margin-bottom:20px;
+}
+
+.filters{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+margin-bottom:30px;
+}
+
+.filters input,
+.filters select{
+padding:10px;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:16px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card h3{
+margin:15px;
+color:#d81b60;
+}
+
+.card p{
+padding:0 15px;
+line-height:24px;
+}
+
+.price{
+font-size:22px;
+font-weight:bold;
+color:green;
+margin:15px;
+}
+
+.buttons{
+display:flex;
+justify-content:space-around;
+margin:20px;
+}
+
+button{
+padding:10px 18px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:15px;
+}
+
+.details{
+background:#6c757d;
+color:white;
+}
+
+.cart{
+background:#ff4081;
+color:white;
+}
+
+button:hover{
+opacity:.9;
+}
+
+footer{
+background:#ff4081;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+@media(max-width:768px){
+
+nav{
+flex-direction:column;
+}
+
+nav ul{
+margin-top:10px;
+}
+
+.filters{
+flex-direction:column;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">🎂 Sweet Cake Shop</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="student.dashboard.html">Dashboard</a></li>
+<li><a href="student.cart.html">Cart</a></li>
+<li><a href="student.login.html">Logout</a></li>
+</ul>
+
+</nav>
+
+<div class="container">
+
+<h1>Welcome Student 👋</h1>
+
+<div class="filters">
+
+<input type="text" id="search" placeholder="Search Cake...">
+
+<select id="category">
+<option>All Categories</option>
+<option>Birthday</option>
+<option>Wedding</option>
+<option>Anniversary</option>
+<option>Party</option>
+</select>
+
+<select id="price">
+<option>Price</option>
+<option>Below ₹500</option>
+<option>₹500 - ₹1000</option>
+<option>Above ₹1000</option>
+</select>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600">
+
+<h3>Chocolate Cake</h3>
+
+<p>Rich chocolate sponge with creamy chocolate frosting.</p>
+
+<div class="price">₹499</div>
+
+<div class="buttons">
+
+<button class="details"
+onclick="alert('Chocolate Cake\nSize: 1 Kg\nFlavor: Chocolate\nFreshly Baked')">
+View Details
+</button>
+
+<button class="cart"
+onclick="addCart('Chocolate Cake',499)">
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600">
+
+<h3>Strawberry Cake</h3>
+
+<p>Soft vanilla sponge with fresh strawberry cream.</p>
+
+<div class="price">₹699</div>
+
+<div class="buttons">
+
+<button class="details"
+onclick="alert('Strawberry Cake\nSize: 1 Kg\nFlavor: Strawberry')">
+View Details
+</button>
+
+<button class="cart"
+onclick="addCart('Strawberry Cake',699)">
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=600">
+
+<h3>Vanilla Cake</h3>
+
+<p>Classic vanilla cake with white cream decoration.</p>
+
+<div class="price">₹599</div>
+
+<div class="buttons">
+
+<button class="details"
+onclick="alert('Vanilla Cake\nSize: 1 Kg\nFlavor: Vanilla')">
+View Details
+</button>
+
+<button class="cart"
+onclick="addCart('Vanilla Cake',599)">
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=600">
+
+<h3>Red Velvet Cake</h3>
+
+<p>Premium red velvet cake with cream cheese frosting.</p>
+
+<div class="price">₹899</div>
+
+<div class="buttons">
+
+<button class="details"
+onclick="alert('Red Velvet Cake\nSize: 1 Kg\nFlavor: Red Velvet')">
+View Details
+</button>
+
+<button class="cart"
+onclick="addCart('Red Velvet Cake',899)">
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 Sweet Cake Shop | Fresh Cakes • Fast Delivery ❤️
+
+</footer>
+
+<script>
+
+function addCart(name,price){
+
+localStorage.setItem("cakeName",name);
+localStorage.setItem("cakePrice",price);
+
+alert(name+" added to cart!");
+
+window.location.href="student.cart.html";
+
+}
+
+</script>
+
+</body>
+</html>
